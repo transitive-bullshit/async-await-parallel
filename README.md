@@ -38,11 +38,19 @@ await parallel([
 
 In this example, a max concurrency of 2 is set, so not more than 2 of the async functions may be executing at any given time. Async functions will be executed in order once previous ones resolve.
 
+The module exposes a single function with the pseudo-signature:
+
+```javascript
+async parallel(Array<async func> thunks, Optional Number concurrency = 5) => Array<results>
+```
+
 ### Installation
 
 ```
 npm install async-await-parallel
 ```
+
+Note that this module sees stable use under production load at Vidy.
 
 ### Inspiration
 
