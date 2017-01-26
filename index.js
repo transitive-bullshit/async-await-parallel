@@ -31,7 +31,7 @@ async function parallelMap (thunks, concurrency = 5) {
     if (index < thunks.length) {
       const currentIndex = index++
       const thunk = thunks[currentIndex]
-      results[currentIndex] = await thunks[currentIndex].call(this)
+      results[currentIndex] = await thunk.call(this)
     }
 
     return (index < thunks.length)

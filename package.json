@@ -6,10 +6,13 @@
   "author": "Vidy",
   "license": "MIT",
   "scripts": {
-    "test": "mocha --harmony"
+    "test": "mocha --harmony && npm run lint",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "eslint": "^3.7.1",
+    "eslint-config-standard": "^6.2.0"
   }
 }
