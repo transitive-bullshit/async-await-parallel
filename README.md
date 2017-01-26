@@ -1,10 +1,10 @@
 # async-await-parallel
 
-This npm module provides a simple utility for elegantly limiting the concurrency of `await`ing over arrays of async results in ES7.
+This module is a simple utility for limiting the concurrency of `await`ing async arrays in ES7. It replaces `Promise.all` when using `async` `await` much like `async.mapLimit` is commonly used in place of the analogous `async.map` when using callback-style async functions.
 
 ### Background
 
-Normally, when you have an array of `async` operations that you want to `await` on, you have to use `Promise.all`.
+Normally, when you have an array of `async` operations that you want to `await` on, you would use `Promise.all`.
 
 ```javascript
 await Promise.all([
@@ -36,13 +36,52 @@ await parallel([
 ], 2)
 ```
 
-In this example, a max concurrency of 2 is set, so not more than 2 of the async functions may be executing at any given time. Async functions will be executed in order once previous ones resolve.
+In this example, a max concurrency of 2 is set, so no more than 2 of the async functions may execute concurrently. Async functions will be executed in order once previous ones resolve.
 
-The module exposes a single function with the pseudo-signature:
+### API
+
+This API assumes `parallel` has been required via the default export of `async-await-parallel` as in the examples above.
 
 ```javascript
-async parallel(Array<async func> thunks, Optional Number concurrency = 5) => Array<results>
+/**
+ * Invokes an array of async functions in parallel with a limit to the maximum
+ * number of concurrent invocations. Async functions are executed in-order and
+ * the results are mapped to the return array.
+ *
+ * Acts as a replacement for `await Promise.all([ ... ])` by limiting the max
+ * concurrency of the array of function invocations.
+ *
+ * If any single task fails (eg, returns a rejected Promise), the pool will drain
+ * any remaining active tasks and reject the resulting Promsie.
+ *
+ * @param {Array<async Function(Void) => Any>} thunks
+ * @param {Number?} concurrency Max concurrency (defaults to 5)
+ *
+ * @return {Promise<Array<Any>>}
+ */
+async function parallel (thunks, concurrency = 5)
 ```
+
+```javascript
+/**
+ * Executes a given async `task` multiple times in parallel with a guaranteed
+ * max concurrency given by `size`.
+ *
+ * The task should be an async function which resolves to a boolean for whether
+ * or not there are more tasks to process.
+ *
+ * If any single task fails (eg, returns a rejected Promise), the pool will drain
+ * any remaining active tasks and reject the resulting Promsie.
+ *
+ * @param {Number} size
+ * @param {async Function(Void) => Boolean} task
+ *
+ * @return {Promise<Void>}
+ */
+async function parallel.pool (size, task)
+```
+
+Note that parallel.pool is used internally and only exposed for convenience.  It is not necessary for any common use case.
 
 ### Installation
 
