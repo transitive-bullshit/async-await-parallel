@@ -106,4 +106,33 @@ describe('parallelMap', async () => {
       expect(result).to.be.ok()
     }
   })
+
+  it('handle rejections properly', async () => {
+    async function expectUnreachable () {
+      // this function should never be reached
+      expect(false).to.be.ok()
+    }
+
+    const input = [
+      () => createResolvedPromise(10),
+      () => createResolvedPromise(10),
+      () => createRejectedPromise(10),
+      () => createResolvedPromise(20),
+
+      () => expectUnreachable(),
+      () => expectUnreachable(),
+      () => expectUnreachable(),
+      () => expectUnreachable()
+    ]
+
+    let exception
+
+    try {
+      const results = await parallel(input, 2)
+    } catch (e) {
+      exception = e
+    }
+
+    expect(exception).to.be.ok()
+  })
 })
