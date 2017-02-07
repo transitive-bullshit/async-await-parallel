@@ -32,7 +32,7 @@ describe('parallelMap', async () => {
     expect(results).to.have.length(6)
 
     // all results should be the resolved value of createResolvedPromise (truthy)
-    for (result of results) {
+    for (let result of results) {
       expect(result).to.be.ok()
     }
   })
@@ -102,7 +102,7 @@ describe('parallelMap', async () => {
     expect(results).to.have.length(input.length)
     expect(hitMaxConcurrency).to.be.ok()
 
-    for (result of results) {
+    for (let result of results) {
       expect(result).to.be.ok()
     }
   })
@@ -128,7 +128,7 @@ describe('parallelMap', async () => {
     let exception
 
     try {
-      const results = await parallel(input, 2)
+      await parallel(input, 2)
     } catch (e) {
       exception = e
     }
