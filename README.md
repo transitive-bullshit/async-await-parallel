@@ -1,6 +1,14 @@
-# async-await-parallel
+# async-await-parallel [![travis](https://img.shields.io/travis/Vidy/async-await-parallel.svg)](https://travis-ci.org/Vidy/async-await-parallel) [![npm](https://img.shields.io/npm/v/async-await-parallel.svg)](https://npmjs.org/package/async-await-parallel)
 
 This module is a simple utility for limiting the concurrency of `await`ing async arrays in ES7. It replaces `Promise.all` when using `async` `await` much like `async.mapLimit` is commonly used in place of the analogous `async.map` when using callback-style async functions.
+
+### Installation
+
+```
+npm install async-await-parallel
+```
+
+This module uses async and await and therefore requires Node >= 7.
 
 ### Background
 
@@ -59,16 +67,6 @@ In this example, a max concurrency of 2 is set, so no more than 2 of the async f
  */
 async function parallel (thunks, concurrency = 5)
 ```
-
-### Installation
-
-```
-npm install async-await-parallel
-```
-
-This module uses async and await and therefore requires Node >= 7.
-
-Note that this module sees stable use under production load at Vidy.
 
 ### Inspiration
 
