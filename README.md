@@ -40,8 +40,6 @@ In this example, a max concurrency of 2 is set, so no more than 2 of the async f
 
 ### API
 
-This API assumes `parallel` has been required via the default export of `async-await-parallel` as in the examples above.
-
 ```javascript
 /**
  * Invokes an array of async functions in parallel with a limit to the maximum
@@ -61,27 +59,6 @@ This API assumes `parallel` has been required via the default export of `async-a
  */
 async function parallel (thunks, concurrency = 5)
 ```
-
-```javascript
-/**
- * Executes a given async `task` multiple times in parallel with a guaranteed
- * max concurrency given by `size`.
- *
- * The task should be an async function which resolves to a boolean for whether
- * or not there are more tasks to process.
- *
- * If any single task fails (eg, returns a rejected Promise), the pool will drain
- * any remaining active tasks and reject the resulting Promsie.
- *
- * @param {Number} size
- * @param {async Function(Void) => Boolean} task
- *
- * @return {Promise<Void>}
- */
-async function parallel.pool (size, task)
-```
-
-Note that parallel.pool is used internally and only exposed for convenience.  It is not necessary for any common use case.
 
 ### Installation
 
