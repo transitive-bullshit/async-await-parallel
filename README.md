@@ -89,6 +89,8 @@ Note that parallel.pool is used internally and only exposed for convenience.  It
 npm install async-await-parallel
 ```
 
+This module uses async and await and therefore requires Node >= 7.
+
 Note that this module sees stable use under production load at Vidy.
 
 ### Inspiration

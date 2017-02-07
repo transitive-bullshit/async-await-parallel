@@ -5,6 +5,19 @@
   "main": "index.js",
   "author": "Vidy",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Vidy/async-await-parallel.git"
+  },
+  "keywords": [
+    "async",
+    "await",
+    "promise",
+    "parallel",
+    "concurrent",
+    "map",
+    "limit"
+  ],
   "scripts": {
     "test": "mocha --harmony && npm run lint",
     "lint": "eslint ."
