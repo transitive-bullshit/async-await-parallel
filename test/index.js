@@ -135,4 +135,21 @@ describe('parallelMap', async () => {
 
     expect(exception).to.be.ok()
   })
+
+  it('handle empty array', async () => {
+    await parallel([])
+  })
+
+  it('handle invalid type', async () => {
+    let exception
+
+    try {
+      await parallel()
+    } catch (e) {
+      exception = e
+    }
+
+    expect(exception).to.be.an(Error)
+    expect(exception.message).to.eql('thunks must be of type array')
+  })
 })
