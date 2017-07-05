@@ -18,6 +18,13 @@ module.exports.pool = parallelPool
  * @return {Promise<Array<Any>>}
  */
 async function parallelMap (thunks, concurrency = 5) {
+  if (!Array.isArray(thunks)) {
+    throw new Error('thunks must be of type array')
+  }
+  if (!thunks.length) {
+    return
+  }
+
   if (concurrency > 0) {
     concurrency = Math.min(concurrency, thunks.length)
   } else {
