@@ -1,14 +1,11 @@
 {
   "name": "async-await-parallel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Concurrency control for awaiting an array of async results",
   "main": "index.js",
-  "author": "Vidy",
+  "author": "Travis Fischer",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:mshick/async-await-parallel.git"
-  },
+  "repository": "fisch0920/async-await-parallel",
   "keywords": [
     "async",
     "await",
