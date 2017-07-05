@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Vidy/async-await-parallel.git"
+    "url": "git@github.com:mshick/async-await-parallel.git",
   },
   "keywords": [
     "async",
